@@ -4,6 +4,7 @@
   <artifactId>onlinebookstore</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+	
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -24,6 +25,8 @@
       </plugin>
     </plugins>
   </build>
+	
+	
   <dependencies>
   	
   	<dependency>
@@ -45,5 +48,28 @@
   		<artifactId>javax.servlet-api</artifactId>
   		<version>3.1.0</version>
   	</dependency>
+	  
+	  <dependency>
+          	<groupId>org.sonarsource.scanner.maven</groupId>
+		<artifactId>sonar-maven-plugin</artifactId>
+		<version>3.2</version>
+	  </dependency>
+	  
   </dependencies>
+	
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+			<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+			<!-- Optional URL to server. Default value is http://localhost:9000 -->
+			<sonar.host.url>
+			http://yourserverip:9000
+			</sonar.host.url>
+			</properties>
+		</profile>
+	</profiles>
+	
 </project>
