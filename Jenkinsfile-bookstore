@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage("Git Checkout"){
       steps{
-            git credentialsId: 'GitCred', url: 'https://github.com/shreemansandeep/maven-project1.git'
+            git branch: 'J2EE', credentialsId: 'GitID', url: 'https://github.com/shreemansandeep/javaonlinebookstore.git'
            }
           }
      stage("Maven Build"){
@@ -14,11 +14,11 @@ pipeline{
             }
      stage("deploy-dev"){
        steps{
-          sshagent(['tomcat-pipe']) {
+          sshagent(['tomcat-pipedp']) {
           sh """
-          scp -o StrictHostKeyChecking=no target/myweb.war ubuntu@ip-172-31-35-79:/opt/tomcat/webapps/
-          ssh ubuntu@ip-172-31-35-79 /opt/tomcat/bin/shutdown.sh
-          ssh ubuntu@ip-172-31-35-79 /opt/tomcat/bin/startup.sh
+          scp -o StrictHostKeyChecking=no target/myweb.war ubuntu@ip-172-31-33-156:/opt/tomcat/webapps/
+          ssh ubuntu@ip-172-31-33-156 /opt/tomcat/bin/shutdown.sh
+          ssh ubuntu@ip-172-31-33-156 /opt/tomcat/bin/startup.sh
            """
             }
           }
