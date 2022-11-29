@@ -79,10 +79,8 @@
 	  </dependency>
 	  
   </dependencies>
-	<pluginGroups>
-        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
-    </pluginGroups>
-	                <profiles>
+	
+<profiles>
         <profile>
             <id>sonar</id>
             <activation>
