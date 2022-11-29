@@ -57,7 +57,7 @@
 	  
   </dependencies>
 	
-	<profiles>
+	<!-- <profiles>
 		<profile>
 			<id>sonar</id>
 			<activation>
@@ -70,6 +70,6 @@
 			</sonar.host.url>
 			</properties>
 		</profile>
-	</profiles>
+	</profiles> --!>
 	
 </project>
