@@ -12,9 +12,18 @@ agent any
 stage("Maven Build"){
       steps{
           sh "mvn clean package"
-          sh "mv target/*.war target/mybookonlineown.war"
+  
     }
 }
+
+stage('Static code analysis'){
+            
+            steps{
+                    withSonarQubeEnv(credentialsId: 'sonartoken')  
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                   }
+            }
 
 
 }
