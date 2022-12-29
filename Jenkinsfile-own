@@ -16,7 +16,7 @@ stage("Maven Build"){
     }
 }
 
-stage('Static code analysis'){
+stage("Static code analysis"){
             
             steps{
                     withSonarQubeEnv(credentialsId: 'sonartoken')  {
