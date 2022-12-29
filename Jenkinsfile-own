@@ -2,9 +2,17 @@ pipeline{
 agent any
 
   stages{
+  
     stage("Git Checkout"){
       steps{
           git branch: 'J2EE', credentialsId: 'GitID', url: 'https://github.com/shreemansandeep/javaonlinebookstore.git'
+    }
+}
+
+stage("Maven Build"){
+      steps{
+          sh "mvn clean package"
+          sh "mv target/*.war target/mybookonlineown.war"
     }
 }
 
