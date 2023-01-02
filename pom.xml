@@ -5,6 +5,49 @@
   <version>0.3-SNAPSHOT</version>
   <packaging>war</packaging>
 	
+	
+	<dependencies>
+	  
+	  <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>29.0-jre</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+  	
+  	<dependency>
+  		<groupId>org.postgresql</groupId>
+  		<artifactId>postgresql</artifactId>
+  		<version>42.3.3</version>
+  	</dependency>
+  	
+  	
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.16</version>
+	</dependency>
+  	
+  
+  	<dependency>
+  		<groupId>javax.servlet</groupId>
+  		<artifactId>javax.servlet-api</artifactId>
+  		<version>3.1.0</version>
+  	</dependency>
+	  
+	  <dependency>
+          	<groupId>org.sonarsource.scanner.maven</groupId>
+		<artifactId>sonar-maven-plugin</artifactId>
+		<version>3.2</version>
+	  </dependency>
+	  
+  </dependencies>
+	
   <build>
     <sourceDirectory>src</sourceDirectory>
 	  
@@ -51,67 +94,28 @@
             <artifactId>maven-surefire-plugin</artifactId>
         </plugin>
 	    
-	    
+	  <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+                <execution>
+                    <id>repackage</id>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                    <configuration>
+                        <finalName>onlinebookone</finalName>
+                    </configuration>
+                </execution>
+            </executions>
+			</plugin>  
 	    
     </plugins>
   </build>
 	
 	
-  <dependencies>
-	  
-	  <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>29.0-jre</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.1</version>
-      <scope>test</scope>
-    </dependency>
-  	
-  	<dependency>
-  		<groupId>org.postgresql</groupId>
-  		<artifactId>postgresql</artifactId>
-  		<version>42.3.3</version>
-  	</dependency>
-  	
-  	
-	<dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>8.0.16</version>
-	</dependency>
-  	
   
-  	<dependency>
-  		<groupId>javax.servlet</groupId>
-  		<artifactId>javax.servlet-api</artifactId>
-  		<version>3.1.0</version>
-  	</dependency>
-	  
-	  <dependency>
-          	<groupId>org.sonarsource.scanner.maven</groupId>
-		<artifactId>sonar-maven-plugin</artifactId>
-		<version>3.2</version>
-	  </dependency>
-	  
-  </dependencies>
 	
-<profiles>
-        <profile>
-            <id>sonar</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <!-- Optional URL to server. Default value is http://localhost:9000 -->
-                <sonar.host.url>
-                  http://3.108.223.100:9000
-                </sonar.host.url>
-            </properties>
-        </profile>
-     </profiles>
+
 	
 </project>
