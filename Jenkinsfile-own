@@ -55,7 +55,7 @@ stage("Static code analysis"){
             
                 def pom = readMavenPom file: 'pom.xml'
                 
-                def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "onlinebookown-snapshot" ! "onlinebookown-release"
+                def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "onlinebookown-snapshot" : "onlinebookown-release"
             
                 nexusArtifactUploader artifacts: [
                 [
