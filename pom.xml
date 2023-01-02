@@ -51,6 +51,18 @@
             <artifactId>maven-surefire-plugin</artifactId>
         </plugin>
 	    
+	    <executions>
+                <execution>
+                    <id>repackage</id>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                    <configuration>
+                        <finalName>onlinebook</finalName>
+                    </configuration>
+                </execution>
+            </executions>
+	    
     </plugins>
   </build>
 	
