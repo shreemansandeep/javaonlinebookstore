@@ -19,8 +19,8 @@ stage("Maven Build"){
 stage("Static code analysis"){
             
             steps{
-                    withSonarQubeEnv(credentialsId: 'sonartoken')  {
-                        sh 'mvn clean package sonar:sonar'
+                    withSonarQubeEnv(credentialsId: 'sonar-token') {
+                            sh 'mvn clean install sonar:sonar'
                     }
                    }
             }
