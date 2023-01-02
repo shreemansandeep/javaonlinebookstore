@@ -53,7 +53,9 @@ stage("Static code analysis"){
            steps{
             script{
             
-                    def pom = readMavenPom file: 'pom.xml'  
+                def pom = readMavenPom file: 'pom.xml'
+                
+                def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "onlinebookown-snapshot" ! "onlinebookown-release"
             
                 nexusArtifactUploader artifacts: [
                 [
@@ -68,7 +70,7 @@ stage("Static code analysis"){
                 nexusUrl: '43.205.135.54:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
-                repository: 'onlinebookown-release', 
+                repository: nexusRepo, 
                 version: "${pom.version}"
                      }
                    }
