@@ -56,7 +56,7 @@ stage("Static code analysis"){
                 [
                     artifactId: 'onlinebookstore', 
                     classifier: '', 
-                    file: 'onlinebookstore-0.1.war', 
+                    file: 'target/onlinebookstore-0.1.war', 
                     type: 'war'
                   ]
                 ], 
