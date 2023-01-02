@@ -51,7 +51,7 @@
             <artifactId>maven-surefire-plugin</artifactId>
         </plugin>
 	    
-	    <finalName>onlinebook</finalName>
+	    
 	    
     </plugins>
   </build>
