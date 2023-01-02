@@ -9,16 +9,15 @@ agent any
     }
 }
 
-stage('UNIT testing'){
-            
-            steps{
-                    sh 'mvn test'
-                }
+stage("Unit testing"){
+       steps{
+              sh 'mvn test'
+             }
         }
         
- stage('Integration testing'){
-                script{
-                    sh 'mvn verify -DskipUnitTests'
+ stage("Integration testing"){
+                steps{
+                      sh 'mvn verify -DskipUnitTests'
                 }
         }
 
