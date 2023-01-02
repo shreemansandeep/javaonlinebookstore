@@ -38,6 +38,38 @@ stage("Static code analysis"){
                      }
                    }
                   }
+                  
+  stage("Quality Gate Status"){
+            
+           steps{
+            script{
+                waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                     }
+                   }
+                  }
+                  
+   stage("Upload War To Nexus"){
+            
+           steps{
+            script{
+                nexusArtifactUploader artifacts: [
+                [
+                    artifactId: 'onlinebookstore', 
+                    classifier: '', 
+                    file: 'onlinebookstore-0.1.war', 
+                    type: 'war'
+                  ]
+                ], 
+                credentialsId: 'nexus-auth', 
+                groupId: 'onlinebookstore', 
+                nexusUrl: '43.205.135.54:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'onlinebookown-release', 
+                version: '0.1'
+                     }
+                   }
+                  }
 
 
 }
