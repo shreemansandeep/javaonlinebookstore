@@ -2,7 +2,7 @@
 
 LABEL maintainer="dockersandheep"
 
-ADD ./target/onlinebookstore-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
+ADD ./target/*.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
