@@ -23,7 +23,7 @@ stage("Unit testing"){
 
 stage("Maven Build"){
       steps{
-          sh "mvn clean package"
+          sh "mvn clean install"
   
     }
 }
@@ -32,8 +32,8 @@ stage("Static code analysis"){
             
            steps{
             script{
-                withSonarQubeEnv(credentialsId: 'sonar-token') {
-                            sh 'mvn clean install sonar:sonar'
+                withSonarQubeEnv(credentialsId: 'sonartoken') {
+                            sh 'mvn clean package sonar:sonar'
                       }
                      }
                    }
@@ -43,7 +43,7 @@ stage("Static code analysis"){
             
            steps{
             script{
-                waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                waitForQualityGate abortPipeline: false, credentialsId: 'sonartoken'
                      }
                    }
                   }
@@ -61,13 +61,13 @@ stage("Static code analysis"){
                 [
                     artifactId: 'onlinebookstore', 
                     classifier: '', 
-                    file: 'target/onlinebookstore-0.3.war', 
+                    file: 'target/onlinebookstore', 
                     type: 'war'
                   ]
                 ], 
                 credentialsId: 'nexus-auth', 
                 groupId: 'onlinebookstore', 
-                nexusUrl: '43.205.135.54:8081', 
+                nexusUrl: '43.204.112.69:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
                 repository: nexusRepo, 
