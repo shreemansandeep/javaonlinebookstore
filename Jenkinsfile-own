@@ -53,7 +53,7 @@ stage("Static code analysis"){
            steps{
             script{
             
-                def pom = readMavenPom file: 'pom.xml'       //calling google search
+                def pom = readMavenPom file: 'pom.xml'
                 
                 def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "onlinebook-snapshot" : "onlinebook-release"
             
