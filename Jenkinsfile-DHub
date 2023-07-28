@@ -23,7 +23,7 @@ stage("Unit testing"){
 
 stage("Maven Build"){
       steps{
-          sh "mvn clean install"
+          sh "mvn clean package"
   
     }
 }
