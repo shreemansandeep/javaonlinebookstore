@@ -24,7 +24,7 @@ stage("Maven Compile"){
 
 stage('OWASP Dependency-Check Vulnerabilities') {
       steps {
-        dependencyCheck additionalArguments: '--scan ./ --formnat HTML',  odcInstallation: 'OWASPDP'
+        dependencyCheck additionalArguments: '--scan ./ ',  odcInstallation: 'OWASPDP'
         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
       }
     }
