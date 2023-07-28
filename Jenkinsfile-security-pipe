@@ -28,18 +28,18 @@ stage('OWASP Dependency-Check Vulnerabilities') {
         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
       }
     }
-/*
+
 stage("Static code analysis"){
             
            steps{
             script{
-                withSonarQubeEnv(credentialsId: 'sonartoken') {
-                            sh 'mvn clean package sonar:sonar'
+                withSonarQubeEnv(credentialsId: 'sonar-token') {
+                            sh 'mvn sonar:sonar'
                       }
                      }
                    }
                   }
-                  
+    /*              
   stage("Quality Gate Status"){
             
            steps{
