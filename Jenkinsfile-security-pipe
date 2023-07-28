@@ -27,8 +27,8 @@ stage('OWASP Dependency-Check Vulnerabilities') {
         dependencyCheck additionalArguments: ''' 
                     -o './'
                     -s './'
-                    -f 'ALL' 
-                    --prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
+                    -f 'HTML' 
+                    --prettyPrint''', odcInstallation: 'OWASPDP'
         
         dependencyCheckPublisher pattern: 'dependency-check-report.xml'
       }
