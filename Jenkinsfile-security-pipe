@@ -10,14 +10,14 @@ agent any
     }
 }
 
-
+/*
 stage("Maven Build"){
       steps{
           sh "mvn clean package"
   
     }
 }
-/*
+
 stage("Static code analysis"){
             
            steps{
