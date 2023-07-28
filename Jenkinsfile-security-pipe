@@ -39,6 +39,13 @@ stage("Static code analysis"){
                      }
                    }
                   }
+
+stage("Maven Build"){
+      steps{
+          sh "mvn clean package"
+  
+    }
+}
     /*              
   stage("Quality Gate Status"){
             
