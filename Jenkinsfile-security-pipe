@@ -4,7 +4,6 @@ agent any
 tools{
     jdk 'jdk17'
     maven 'maven3'
-    dependency-check 'owaspdp'
 }
 
   stages{
@@ -25,12 +24,7 @@ stage("Maven Compile"){
 
 stage('OWASP Dependency-Check Vulnerabilities') {
       steps {
-        dependencyCheck additionalArguments: ''' 
-                    -o './'
-                    -s './'
-                    -f 'HTML' 
-                    --prettyPrint''', odcInstallation: 'OWASPDP'
-        
+        dependencyCheck additionalArguments: '--scan ./ --formnat HTML',  odcInstallation: 'OWASPDP'
         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
       }
     }
