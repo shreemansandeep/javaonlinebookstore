@@ -1,1 +1,90 @@
 
+pipeline{
+agent any
+
+  stages{
+  
+    stage("Git Checkout"){
+      steps{
+          git branch: 'J2EE', credentialsId: 'GitID', url: 'https://github.com/shreemansandeep/javaonlinebookstore.git'
+    }
+}
+
+
+stage("Maven Build"){
+      steps{
+          sh "mvn clean package"
+  
+    }
+}
+/*
+stage("Static code analysis"){
+            
+           steps{
+            script{
+                withSonarQubeEnv(credentialsId: 'sonartoken') {
+                            sh 'mvn clean package sonar:sonar'
+                      }
+                     }
+                   }
+                  }
+                  
+  stage("Quality Gate Status"){
+            
+           steps{
+            script{
+                waitForQualityGate abortPipeline: false, credentialsId: 'sonartoken'
+                     }
+                   }
+                  }
+                  
+   stage("Upload War To Nexus"){
+            
+           steps{
+            script{
+            
+                def pom = readMavenPom file: 'pom.xml'
+                
+                def nexusRepo = pom.version.endsWith("SNAPSHOT") ? "onlinebook-snapshot" : "onlinebook-release"
+            
+                nexusArtifactUploader artifacts: [
+                [
+                    artifactId: 'onlinebookstore', 
+                    classifier: '', 
+                    file: 'target/onlinebookstore.war', 
+                    type: 'war'
+                  ]
+                ], 
+                credentialsId: 'nexus-auth', 
+                groupId: 'onlinebookstore', 
+                nexusUrl: '43.204.112.69:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: nexusRepo, 
+                version: "${pom.version}"
+                     }
+                   }
+                  }
+                  
+    stage('Docker Build image and Tag'){
+            steps{
+                  sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+                  sh 'docker image tag $JOB_NAME:v1.$BUILD_ID dockersandheep/$JOB_NAME:v1.$BUILD_ID'
+                  sh 'docker image tag $JOB_NAME:v1.$BUILD_ID dockersandheep/$JOB_NAME:latest'
+            }
+            }
+            
+     stage('Push image to Docker Hub'){
+            steps{
+                  withCredentials([string(credentialsId: 'DockerHpwd', variable: 'DockerHubPwd')]) {
+                  sh 'docker login -u dockersandheep -p ${DockerHubPwd}'
+                  sh 'docker push dockersandheep/$JOB_NAME:v1.$BUILD_ID'
+                  sh 'docker push dockersandheep/$JOB_NAME:latest'
+            }
+                  
+            }
+            }  
+*/
+
+}
+}
