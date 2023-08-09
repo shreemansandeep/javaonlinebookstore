@@ -27,7 +27,7 @@ stage('OWASP Dependency-Check Vulnerabilities') {
         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
       }
     }
-/*
+
 stage("Static code analysis"){
             
            steps{
@@ -45,7 +45,8 @@ stage("Maven Build"){
   
     }
 }
-                  
+
+/*
   stage("Quality Gate Status"){
             
            steps{
