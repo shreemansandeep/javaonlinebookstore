@@ -13,7 +13,7 @@ tools{
     }
 }
 
-/*
+
 stage("Maven Compile"){
       steps{
           sh "mvn clean compile"
@@ -24,10 +24,10 @@ stage("Maven Compile"){
 stage('OWASP Dependency-Check Vulnerabilities') {
       steps {
         dependencyCheck additionalArguments: '--scan ./ ',  odcInstallation: 'OWASPDP'
-       // dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
       }
     }
-
+/*
 stage("Static code analysis"){
             
            steps{
