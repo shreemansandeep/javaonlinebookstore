@@ -1,4 +1,3 @@
-
 pipeline{
 agent any
 tools{
@@ -14,7 +13,7 @@ tools{
     }
 }
 
-
+/*
 stage("Maven Compile"){
       steps{
           sh "mvn clean compile"
@@ -46,7 +45,7 @@ stage("Maven Build"){
   
     }
 }
-    /*              
+                  
   stage("Quality Gate Status"){
             
            steps{
@@ -100,8 +99,7 @@ stage("Maven Build"){
                   sh 'docker login -u dockersandheep -p ${DockerHubPwd}'
                   sh 'docker push dockersandheep/$JOB_NAME:v1.$BUILD_ID'
                 // sh 'docker push dockersandheep/$JOB_NAME:latest'
-            }
-                  
+            }           
             }
             }  
 
