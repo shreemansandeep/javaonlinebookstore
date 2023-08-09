@@ -83,12 +83,14 @@ stage("Maven Build"){
                      }
                    }
                   }
-                  
+
+*/
+
     stage('Docker Build image and Tag'){
             steps{
                   sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
                   sh 'docker image tag $JOB_NAME:v1.$BUILD_ID dockersandheep/$JOB_NAME:v1.$BUILD_ID'
-                  sh 'docker image tag $JOB_NAME:v1.$BUILD_ID dockersandheep/$JOB_NAME:latest'
+                 // sh 'docker image tag $JOB_NAME:v1.$BUILD_ID dockersandheep/$JOB_NAME:latest'
             }
             }
             
@@ -97,12 +99,18 @@ stage("Maven Build"){
                   withCredentials([string(credentialsId: 'DockerHpwd', variable: 'DockerHubPwd')]) {
                   sh 'docker login -u dockersandheep -p ${DockerHubPwd}'
                   sh 'docker push dockersandheep/$JOB_NAME:v1.$BUILD_ID'
-                  sh 'docker push dockersandheep/$JOB_NAME:latest'
+                // sh 'docker push dockersandheep/$JOB_NAME:latest'
             }
                   
             }
             }  
-*/
+
+        stage("TRIVY Image Scan"){
+                    steps{
+                        sh 'trivy image dockersandheep/$JOB_NAME:v1.$BUILD_ID'
+                    }
+                }
+
 
 }
 }
