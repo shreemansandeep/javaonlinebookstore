@@ -1,6 +1,4 @@
- FROM tomcat:latest
-
-LABEL maintainer="dockersandheep"
+FROM tomcat:latest
 
 ADD ./target/*.war /usr/local/tomcat/webapps/
 
