@@ -110,6 +110,11 @@ stage("Maven Build"){
                     }
                 }
 
+        stage('Remove Docker Images') {
+                    steps {
+                          sh 'docker rmi -f $(docker images -q)'
+                    }
+                    }
 
 }
 }
